@@ -8,12 +8,9 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
-    const clickHandler = (e) => {
-        e.preventDefault();
-        console.log({ name, username, password })
-    }
 
-    const handleRegister = () => {
+    const handleRegister = (e) => {
+        e.preventDefault();
         axios
             .post('http://localhost:4004/api/user', { name, username, password })
             .then((res) => {
@@ -38,14 +35,14 @@ const Register = () => {
                     <label>Username:
                         <input
                             type='text'
-                            placeholder='enter a username'
+                            placeholder='enter username'
                             onChange={e => setUsername(e.target.value)}
                         />
                     </label>
                     <label>Password:
                         <input
                             type='password'
-                            placeholder='enter a password'
+                            placeholder='enter password'
                             onChange={e => setPassword(e.target.value)}
                         />
                     </label>

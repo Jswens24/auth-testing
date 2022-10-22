@@ -38,5 +38,17 @@ const createUser = (req, res) => {
         })
 }
 
+const checkUsers = (req, res) => {
+    const username = req.body.username;
+    const password = req.body.password;
 
-module.exports = { createUser }
+    sequelize.query(`
+    SELECT * FROM user_test WHERE LOWER(user_username) = '${username.toLowerCase()}' AND LOWER(user_password) = '${password.toLowerCase()}';
+    `)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0][0])
+        })
+}
+
+
+module.exports = { createUser, checkUsers }

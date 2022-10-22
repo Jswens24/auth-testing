@@ -1,0 +1,20 @@
+form {
+    display: flex;
+    flex-direction: column;
+    height: 470px;
+    background-color: aquamarine;
+    align-items: center;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 250px;
+    font-size: 30px;
+}
+
+input {
+    font-size: 30px;
+    padding: 5px;
+}
