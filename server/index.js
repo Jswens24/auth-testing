@@ -12,7 +12,7 @@ const { createUser, checkUsers } = require('./controller')
 
 app.post('/api/user', createUser);
 
-app.get('/api/checkUsers', checkUsers);
+app.post('/api/checkUsers', checkUsers);
 
 
 

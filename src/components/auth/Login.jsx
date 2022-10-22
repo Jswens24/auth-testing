@@ -9,7 +9,7 @@ const Login = () => {
     const handleSignIn = (e) => {
         e.preventDefault();
         axios
-            .get('http://localhost:4004/api/checkUsers', { username, password })
+            .post('http://localhost:4004/api/checkUsers', { username, password })
             .then((res) => {
                 console.log(res.data)
             })
