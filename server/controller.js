@@ -46,6 +46,9 @@ const checkUsers = (req, res) => {
     SELECT * FROM user_test WHERE LOWER(user_username) = '${username.toLowerCase()}' AND LOWER(user_password) = '${password.toLowerCase()}';
     `)
         .then((dbResult) => {
+            if (dbResult[0].length === 0) {
+                res.status(200).send('')
+            }
             res.status(200).send(dbResult[0][0])
         })
 }
