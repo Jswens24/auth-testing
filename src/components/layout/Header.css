@@ -1,0 +1,12 @@
+nav {
+    display: flex;
+    justify-content: space-around;
+    font-size: 25px;
+    background-color: aqua;
+}
+
+ul {
+    display: flex;
+    width: 30%;
+    justify-content: space-around;
+}

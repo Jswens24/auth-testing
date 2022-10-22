@@ -1,0 +1,22 @@
+header {
+    font-size: 50px;
+    font-weight: bold;
+    height: 75px;
+    background-color: aqua;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+    justify-content: space-around;
+    align-items: center;
+    background-color: aquamarine;
+
+}
+
+button {
+    font-size: 25px;
+    width: 140px;
+    padding: 5px;
+}
