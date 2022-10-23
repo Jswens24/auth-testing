@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../layout/Header';
 import './Register.css'
 
@@ -8,15 +9,31 @@ const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
 
     const handleRegister = (e) => {
         e.preventDefault();
-        axios
-            .post('http://localhost:4004/api/user', { name, username, password })
-            .then((res) => {
-                console.log('sent to database')
-            })
-            .catch(err => console.log(err))
+        if (name.length === 0 || username.length === 0 || password.length === 0) {
+            alert('INVALID NAME, USERNAME, PASSWORD')
+        } else {
+            axios
+                .post('http://localhost:4004/api/user', { name, username, password })
+                .then((res) => {
+                    console.log('sent to database')
+                    console.log(res.data)
+                    if (res.data) {
+                        localStorage.setItem('user_id', res.data.user_id)
+                        const currentId = localStorage.getItem('user_id');
+                        {
+                            navigate(`/userHomePage/${currentId}`)
+                        }
+                    } else {
+                        alert('INVALID NAME, USERNAME, PASSWORD')
+                    }
+                })
+                .catch(err => console.log(err))
+        }
     }
 
 

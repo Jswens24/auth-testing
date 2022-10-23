@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useNavigate } from 'react-router-dom';
 import Header from '../layout/Header';
 import UserHomePage from '../layout/UserHomePage';
 
@@ -8,17 +8,22 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
+    const navigate = useNavigate();
+
+
+
     const handleSignIn = (e) => {
         e.preventDefault();
         axios
             .post('http://localhost:4004/api/checkUsers', { username, password })
             .then((res) => {
-                console.log(res.data)
-                console.log(Boolean(res.data))
+                // console.log(res.data.user_name)
+                // console.log(Boolean(res.data))
                 if (res.data) {
                     localStorage.setItem('user_id', res.data.user_id)
+                    const currentId = localStorage.getItem('user_id');
                     {
-                        <Link to='/userHomePage/3' />
+                        navigate(`/userHomePage/${currentId}`)
                     }
                 } else {
                     alert('USERNAME OR PASSWORD INCORRECT')

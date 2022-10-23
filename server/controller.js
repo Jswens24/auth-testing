@@ -53,5 +53,16 @@ const checkUsers = (req, res) => {
         })
 }
 
+const getUserName = (req, res) => {
+    const userId = req.query.currentId;
 
-module.exports = { createUser, checkUsers }
+    sequelize.query(`
+    SELECT * FROM user_test WHERE user_id = ${userId}
+    `)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0][0])
+        })
+}
+
+
+module.exports = { createUser, checkUsers, getUserName }
