@@ -64,5 +64,22 @@ const getUserName = (req, res) => {
         })
 }
 
+const newPost = (req, res) => {
+    const title = req.body.title;
+    const pictureUrl = req.body.pictureUrl;
+    const coordinates = req.body.coordinates;
+    const comment = req.body.comment;
+    const currentId = req.body.currentId;
 
-module.exports = { createUser, checkUsers, getUserName }
+    sequelize.query(`
+    INSERT INTO user_post (camp_entry_title, camp_entry_url, camp_entry_comment, camp_entry_coordinates, user_id)
+    VALUES ('${title}', '${pictureUrl}', '${comment}', '${coordinates}', '${currentId}') RETURNING *;
+    `)
+        .then((newDbPostResult) => {
+            res.status(200).send(newDbPostResult[0][0])
+        })
+
+}
+
+
+module.exports = { createUser, checkUsers, getUserName, newPost }
