@@ -7,7 +7,7 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
-const { createUser, checkUsers, getUserName, newPost } = require('./controller')
+const { createUser, checkUsers, getUserName, newPost, getList } = require('./controller')
 
 
 app.post('/api/user', createUser);
@@ -16,6 +16,7 @@ app.post('/api/post', newPost)
 
 
 app.get('/api/getUserName', getUserName);
+app.get('/api/getList', getList)
 
 
 

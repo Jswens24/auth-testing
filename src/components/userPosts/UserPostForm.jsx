@@ -26,6 +26,7 @@ const UserPostForm = () => {
                 .post('http://localhost:4004/api/post', { title, pictureUrl, coordinates, comment, currentId })
                 .then((res) => {
                     console.log(res.data)
+                    navigate(`/userHomePage/${currentId}`)
                 })
         }
 

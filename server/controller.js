@@ -81,5 +81,16 @@ const newPost = (req, res) => {
 
 }
 
+const getList = (req, res) => {
+    const currentId = req.query.currentId
 
-module.exports = { createUser, checkUsers, getUserName, newPost }
+    sequelize.query(`
+    SELECT * FROM user_post WHERE user_id = ${currentId}
+    `)
+        .then((dbResult) => {
+            res.status(200).send(dbResult[0][0])
+        })
+}
+
+
+module.exports = { createUser, checkUsers, getUserName, newPost, getList }
